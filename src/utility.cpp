@@ -1,4 +1,5 @@
 #include "utility.h"
+#include <string>
 #include <sstream>
 
 // Converts vector of strings to vector of char* (C-style strings)

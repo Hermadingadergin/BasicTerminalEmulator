@@ -9,7 +9,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 # Add the main executable
 add_executable(BasicTerminalEmulator src/main.cpp src/terminal.cpp)
 #Register the test executable with CTest
-add_executable(my_test test/test.cpp src/terminal.cpp)
+add_executable(my_test test/test.cpp src/terminal.cpp src/utility.cpp src/mypipe.cpp)
 add_test(NAME my_test_run COMMAND my_test)
 #Include directories for the test target
 target_include_directories(my_test PRIVATE ${PROJECT_SOURCE_DIR}/include)

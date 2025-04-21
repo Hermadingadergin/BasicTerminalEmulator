@@ -1,4 +1,6 @@
 #include "terminal.h"
+#include "utility.h"
+#include "mypipe.h"
 #include <iostream>
 #include <sys/types.h>
 #include <unistd.h>

@@ -1,5 +1,7 @@
 #ifndef MYPIPE_H
 #define MYPIPE_H
+
+#include <array>
 //mypipe.h
 
 // Class mypipe provides a simple wrapper around a Unix pipe,
