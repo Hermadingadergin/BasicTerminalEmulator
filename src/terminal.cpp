@@ -22,14 +22,14 @@ int run_cmd(std::vector<char*> argv)
         return 1;
     }
     else if (pid == 0) {
-        // Child process
-        pid.redirect();
+        // child process
+        pipe.redirect();
         execvp(argv[0], argv.data());
         std::cout << "Execvp error";
         exit(1);
     }
     else {
-        // Parent process
+        // parent process
         int status;
         waitpid(pid, &status, 0);
         std::string result = pipe.read();

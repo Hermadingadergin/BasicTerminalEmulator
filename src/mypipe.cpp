@@ -3,15 +3,16 @@
 #include <sys/types.h>
 #include <array>
 #include <string>
+#include <iostream>
 
 // Constructor: Creates a unidirectional pipe using pipe().
 // pipe() initializes two file descriptors: fd[0] for reading, fd[1] for writing.
 mypipe::mypipe()
 {
-	auto status{ pipe(fd) };
-	if (status < 0)
+	pipe(fd.data());
+	if (pipe(fd.data()))
 	{
-		exit(1);
+		std::cout << "Error in laying pipe";
 	}
 }
 
@@ -38,7 +39,7 @@ std::string mypipe::read()
 	std::string result;
 	std::array<char, 256> buf;
 	ssize_t bytes;
-	while (bytes = ::read(fd[0], buf.data(), buf.size()))
+	while (bytes == ::read(fd[0], buf.data(), buf.size()))
 	{
 		result.append(buf.data(), bytes);
 	}
