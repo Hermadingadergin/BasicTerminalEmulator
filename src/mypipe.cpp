@@ -1,7 +1,8 @@
 #include "mypipe.h"
 #include <unistd.h>
-#include <iostream>
-#include <sys/wait.h>
+#include <sys/types.h>
+#include <array>
+#include <string>
 
 // Constructor: Creates a unidirectional pipe using pipe().
 // pipe() initializes two file descriptors: fd[0] for reading, fd[1] for writing.
@@ -34,12 +35,12 @@ void mypipe::redirect()
 // Typically used to capture the output that was redirected into the pipe.
 std::string mypipe::read()
 {
+	std::string result;
 	std::array<char, 256> buf;
-	std::size_t bytes;
-	bytes = ::read(fd[0], buf.data(), buf.size());
-	if (bytes > 0)
+	ssize_t bytes;
+	while (bytes = ::read(fd[0], buf.data(), buf.size()))
 	{
-		return std::string{ buf.data(), bytes };
+		result.append(buf.data(), bytes);
 	}
-	return {};
+	return result;
 }

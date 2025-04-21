@@ -3,6 +3,7 @@
 #include "mypipe.h"
 #include <iostream>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <string>
 
@@ -22,7 +23,7 @@ int run_cmd(std::vector<char*> argv)
     }
     else if (pid == 0) {
         // Child process
-        p.redirect();
+        pid.redirect();
         execvp(argv[0], argv.data());
         std::cout << "Execvp error";
         exit(1);
