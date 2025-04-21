@@ -1,5 +1,8 @@
 #ifndef UTILITY_H
 #define UTILITY_H
+
+#include <string>
+#include <vector>
 //utility.h
 
 // Converts vector of strings to vector of char* (C-style strings)
