@@ -39,7 +39,7 @@ std::string mypipe::read()
 	std::string result;
 	std::array<char, 256> buf;
 	ssize_t bytes;
-	while (bytes == ::read(fd[0], buf.data(), buf.size()))
+	while ((bytes = ::read(fd[0], buf.data(), buf.size())) > 0)
 	{
 		result.append(buf.data(), bytes);
 	}
